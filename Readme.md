@@ -16,7 +16,7 @@ The Daily Expense App is a backend service that handles user authentication and 
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/daily-expense-app.git
+    git clone
     cd daily-expense-app
     ```
 
@@ -39,7 +39,7 @@ The Daily Expense App is a backend service that handles user authentication and 
 
 ### Register User
 
-- **URL**: `/api/auth/register`
+- **URL**: `auth/register`
 - **Method**: `POST`
 - **Body**:
   ```json
@@ -48,3 +48,22 @@ The Daily Expense App is a backend service that handles user authentication and 
     "password": "securepassword",
     "name": "John Doe"
   }
+
+  ### Login User
+
+- **URL**: `auth/register`
+- **Method**: `POST`
+- **Body**:
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "securepassword",
+  }
+
+### Access Protected endpoint
+
+- **URL**: `auth/register`
+- **Method**: `GET`
+- **Header**: Authorization : Bearer <Token>
+
+
