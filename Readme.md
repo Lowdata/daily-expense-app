@@ -4,7 +4,15 @@
 
 The Daily Expense App is a backend service that handles user authentication and authorization using JWT. It allows users to register, login, and access protected routes. The app is built using TypeScript, Express.js, and various other libraries for handling security and hashing.
 
-## Features
+## Branches
+
+### Master Branch: Contains all features fully integrated.
+Feature Branches: Each feature is implemented in its own branch for easier review and version control.
+Branch Name : jwt-awth
+
+
+
+## Features of Branch Name : jwt-awth
 
 - User Registration
 - User Login
@@ -16,7 +24,7 @@ The Daily Expense App is a backend service that handles user authentication and 
 
 1. **Clone the repository**:
     ```bash
-    git clone
+    git clone <repository-url>
     cd daily-expense-app
     ```
 
@@ -39,7 +47,7 @@ The Daily Expense App is a backend service that handles user authentication and 
 
 ### Register User
 
-- **URL**: `auth/register`
+- **URL**: `/auth/register`
 - **Method**: `POST`
 - **Body**:
   ```json
@@ -48,22 +56,25 @@ The Daily Expense App is a backend service that handles user authentication and 
     "password": "securepassword",
     "name": "John Doe"
   }
-```
-  ### Login User
 
-- **URL**: `auth/login`
+
+### Login User
+
+- **URL**: `/auth/login`
 - **Method**: `POST`
 - **Body**:
   ```json
   {
     "email": "user@example.com",
-    "password": "securepassword",
+    "password": "securepassword"
   }
 
-### Access Protected endpoint
 
-- **URL**: `auth/register`
+
+### Access Protected Endpoint
+
+- **URL**: `/protected`
 - **Method**: `GET`
-- **Header**: Authorization : Bearer <Token>
+- **Header**: Bearer 'your_token'
 
 
