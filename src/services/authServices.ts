@@ -2,13 +2,11 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../model/User';
 import { Expense } from '../model/expenses';
+import { createUserFromEmail, isEmailInExpenses } from '../helper/unregisteredUser';
+export const users: User[] = [];
+export const expenses: Expense[] = []; 
 
-const users: User[] = [];
-const expenses: Expense[] = []; 
-//generate uniqueId for the user
-const generateUniqueId = (): string => {
-    return Math.random().toString(36).slice(2, 9);
-};
+
 
 
 export const register = async(
@@ -19,10 +17,30 @@ export const register = async(
     const existingUser = users.find(user => user.email === email);
     if (existingUser) throw new Error('User already exists');
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser: User = { id: generateUniqueId(), email, password: hashedPassword, name, expenses: [] };
-    users.push(newUser);
-    return newUser;
+    // Check if the email is already in use in the expenses array as an unregistered participant
+    const associatedInExpenses = isEmailInExpenses(email);
+
+    let user:User;
+
+    if(associatedInExpenses.length > 0){
+        user = await createUserFromEmail(email, name, password);
+
+        user.expenses = associatedInExpenses.map(expense => ({
+            ...expense,
+            participants: expense.participants.map(participant =>
+                participant.email === email
+                    ? { ...participant, userId: user.id } // Set userId for registered users
+                    : participant
+            ),
+            createdAt: expense.createdAt,
+            updatedAt: expense.updatedAt
+        }));
+        
+    }
+    else{
+        user = await createUserFromEmail(email, name, password);
+    }
+    return user;
 };
 
 
