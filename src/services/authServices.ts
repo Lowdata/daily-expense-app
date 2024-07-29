@@ -29,7 +29,7 @@ export const register = async(
             ...expense,
             participants: expense.participants.map(participant =>
                 participant.email === email
-                    ? { ...participant, userId: user.id } // Set userId for registered users
+                    ? { ...participant, userId: user.id, name: name } // Set userId for registered users
                     : participant
             ),
             createdAt: expense.createdAt,

@@ -8,7 +8,7 @@ export const addExpenseController = async(
         const expenseData = req.body;
         try{
             const expenseId = addExpense(expenseData);
-            res.status(201).json({id: expenseId})
+            res.status(201).json({id: expenseData})
         }catch(error){
             res.status(400).json({message: "Cannot add the expense",error})
         }
