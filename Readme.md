@@ -12,13 +12,9 @@ Branch Name : jwt-awth
 
 
 
-## Features of Branch Name : jwt-awth
+## Features of Branch Name : user-features
 
-- User Registration
-- User Login
-- Protected Routes
-- JWT Authentication
-- Password Hashing with bcrypt
+- Fetch user details protected
 
 ## Installation
 
@@ -45,36 +41,11 @@ Branch Name : jwt-awth
 
 ## API Endpoints
 
-### Register User
+### Access user data Endpoint
 
-- **URL**: `/auth/register`
-- **Method**: `POST`
-- **Body**:
-  ```json
-  {
-    "email": "user@example.com",
-    "password": "securepassword",
-    "name": "John Doe"
-  }
-
-
-### Login User
-
-- **URL**: `/auth/login`
-- **Method**: `POST`
-- **Body**:
-  ```json
-  {
-    "email": "user@example.com",
-    "password": "securepassword"
-  }
-
-
-
-### Access Protected Endpoint
-
-- **URL**: `/protected`
+- **URL**: `auth/user`
 - **Method**: `GET`
 - **Header**: Bearer 'your_token'
+    
 
 
