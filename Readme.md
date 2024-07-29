@@ -48,10 +48,10 @@ The Daily Expense App is a backend service that handles user authentication and 
     "password": "securepassword",
     "name": "John Doe"
   }
-
+```
   ### Login User
 
-- **URL**: `auth/register`
+- **URL**: `auth/login`
 - **Method**: `POST`
 - **Body**:
   ```json
