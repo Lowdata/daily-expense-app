@@ -31,3 +31,7 @@ export const login = async (email: string, password: string): Promise<string> =>
     );
     return token;
 };
+
+export const getUserDetails = async (email: string): Promise<User | undefined> => {
+    return users.find(user => user.email === email);
+};
