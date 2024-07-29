@@ -18,4 +18,8 @@ app.get('/', (req,res)=>{
     res.send("Hello")
 })
 
+// Middleware to handle invalid endpoints
+app.use((req, res) => {
+    res.status(404).json({ message: 'Invalid endpoint' });
+});
 export default app;
