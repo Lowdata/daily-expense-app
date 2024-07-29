@@ -1,6 +1,7 @@
 import { expenses } from "./authServices";
 import { Expense } from "../model/expenses";
 import { generateUniqueId } from "../helper/uniqueId";
+import { calculateAmounts } from "../middleware/expenseMiddleware";
 
 // Data Validation
 const validateExpense = (expenseData: Expense) => {
@@ -21,11 +22,13 @@ const validateExpense = (expenseData: Expense) => {
 
 
 //service to add an expense
-export const addExpense = (expenseData: Expense): string => {
+export const addExpense = (expenseData: Expense): string|undefined => {
     validateExpense(expenseData);
+    calculateAmounts(expenseData);
     const expenseId = generateUniqueId();
 
     expenses.push({ ...expenseData, id: expenseId, createdAt: new Date(), updatedAt: new Date() });
 
     return expenseId;
 };
+

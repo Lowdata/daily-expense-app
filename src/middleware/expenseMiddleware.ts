@@ -25,3 +25,22 @@ const validateAndAdjustExpense = (expenseData: Expense) => {
         });
     }
 };
+
+
+// Helper function to calculate the amount owed for each participant
+export const calculateAmounts = (expenseData: Expense) => {
+    const totalAmount = expenseData.amount;
+    const numberOfParticipants = expenseData.participants.length;
+
+    if (expenseData.splitMethod === 'equal') {
+        const amountPerParticipant = totalAmount / numberOfParticipants;
+        expenseData.participants.forEach(p => {
+            p.amountOwed = amountPerParticipant;
+        });
+    } else if (expenseData.splitMethod === 'percentage') {
+        expenseData.participants.forEach(p => {
+            p.amountOwed = (totalAmount * (p.percentage || 0)) / 100;
+        });
+    }
+    // No need to calculate for 'exact' as it should already be provided
+};
