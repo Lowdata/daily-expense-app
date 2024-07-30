@@ -6,15 +6,21 @@ The Daily Expense App is a backend service that handles user authentication and 
 
 ## Branches
 
-### Master Branch: Contains all features fully integrated.
-Feature Branches: Each feature is implemented in its own branch for easier review and version control.
-Branch Name : jwt-awth
+### Master Branch
+- **Description**: Contains all features fully integrated.
 
+## Features
 
+### Authentication & Authorization
+- **User Registration**: Allows users to create an account.
+- **User Login**: Authenticates users and provides a JWT.
+- **Protected Routes**: Access to protected routes using JWT.
 
-## Features of Branch Name : user-features
-
-- Fetch user details protected
+### Expense Management
+- **Add Expenses**: Users can add new expenses with options to split the amount equally, by percentage, or with exact amounts.
+- **Retrieve Individual User Expenses**: Fetch expenses associated with a specific user.
+- **Retrieve Overall Expenses**: Fetch all expenses.
+- **Download Balance Sheet**: Generate and download a balance sheet showing the amounts owed by and to each user.
 
 ## Installation
 
@@ -41,11 +47,68 @@ Branch Name : jwt-awth
 
 ## API Endpoints
 
-### Access user data Endpoint
+### Register User
 
-- **URL**: `auth/user`
-- **Method**: `GET`
-- **Header**: Bearer 'your_token'
+- **URL**: `/auth/register`
+- **Method**: `POST`
+- **Body**:
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "securepassword",
+    "name": "John Doe"
+  }
+
+### add expenses
+
+- **URL**: expenses/add
+- **Method**: POST
+- **Header**: Authorisation: Bearer 'your_token'
+  #### Example Body
+  
+```json
+    {
+  "amount": 100,
+  "splitMethod": "equal",
+  "participants": [
+    {
+      "userId": "user1"
+    },
+    {
+      "name": "John Doe",
+      "email": "john@example.com"
+    }
+  ]}
+```
+### Login User
+
+- **URL**: `/auth/login`
+- **Method**: `POST`
+- **Body**:
+```json
+  {
+    "email": "user@example.com",
+    "password": "securepassword"
+  }
+```
     
+### Retrieve individual user expenses.
+
+- **URL**: expenses/user
+- **Method**: GET
+- **Header**: Authorisation: Bearer 'your_token'
 
 
+### Retrieve overall expenses.
+
+- **URL**: expenses/overall
+- **Method**: GET
+- **Header**: Authorisation: Bearer 'your_token'
+
+
+
+### Download balance sheet.
+
+- **URL**: expenses/balance-sheet
+- **Method**: GET
+- **Header**: Authorisation: Bearer 'your_token'
