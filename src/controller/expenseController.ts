@@ -72,9 +72,10 @@ export const getOverallExpensesController = (req: Request, res: Response) => {
 // Controller to handle balance sheet download
 export const downloadBalanceSheetController = (req: AuthenticatedRequest, res: Response) => {
     try {
-        const userId = req.user.id;
         const userEmail = req.user.email;
-
+        const user = users.find(u => u.email == userEmail);
+        const userId = user?.id
+        if (!userId) { return res.status(400).json({ message: "error" }) }
         const balanceSheet = generateUserBalanceSheet(userId, userEmail);
 
         const fields = ['User', 'Amount Owed'];

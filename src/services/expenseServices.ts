@@ -69,7 +69,7 @@ export const generateUserBalanceSheet = (userId: string, userEmail: string): { [
                 if (!balanceSheet[userId]) {
                     balanceSheet[userId] = 0;
                 }
-                balanceSheet[userId] -= participant.amountOwed || 0; // Assuming negative amount indicates owed money
+                balanceSheet[userId] -= participant.amountOwed || 0; 
             }
         }
     });
