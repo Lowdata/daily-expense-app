@@ -1,4 +1,4 @@
-import { expenses } from "./authServices";
+import { expenses, users } from "./authServices";
 import { Expense } from "../model/expenses";
 import { generateUniqueId } from "../helper/uniqueId";
 import { calculateAmounts } from "../middleware/expenseMiddleware";
@@ -29,7 +29,6 @@ export const addExpense = (expenseData: Expense, creatorId:string): string|undef
     const expenseId = generateUniqueId();
 
     expenses.push({ ...expenseData, id: expenseId, createdAt: new Date(), updatedAt: new Date(), creatorId: creatorId });
-
     return expenseId;
 };
 

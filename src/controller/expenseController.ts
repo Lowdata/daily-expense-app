@@ -3,14 +3,31 @@ import { addExpense, generateUserBalanceSheet, getOverallExpenses, getUserExpens
 import { AuthenticatedRequest } from "../middleware/authMiddleware";
 import { Expense } from "../model/expenses";
 import {parse} from 'json2csv';
-
+import { expenses, users } from "../services/authServices";
 
 export const addExpenseController = async (req: AuthenticatedRequest, res: Response) => {
     const expenseData:Expense = req.body;
     try {
-        const creatorId = req.user.id;
+        const creatorEmail = req.user.email;
+        const creator = users.find(u => u.email == creatorEmail);
+        const creatorId = creator?.id
+        if (!creatorId) { return res.status(400).json({ message: "error" }) }
         const expenseData = req.body;
         const expenseId = addExpense(expenseData,creatorId);
+        const expense = expenses.find(exp => exp.id === expenseId);
+        if (!expense) {
+            throw new Error('Expense not found');
+        }
+
+        const user = users.find(u => u.id === creatorId);
+        if (user) {
+            if (!user.expenses) {
+                user.expenses = [];
+            }
+            user.expenses.push(expense);
+        } else {
+            throw new Error('User not found');
+        }
         res.status(201).json({ id: expenseId, message: "Expense recorded Successfully" });
     } catch (error) {
         if (error instanceof Error) {
