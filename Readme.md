@@ -8,13 +8,17 @@ The Daily Expense App is a backend service that handles user authentication and 
 
 ### Master Branch: Contains all features fully integrated.
 Feature Branches: Each feature is implemented in its own branch for easier review and version control.
-Branch Name : jwt-awth
+Branch Name : expences-features
 
 
 
 ## Features of Branch Name : user-features
 
-- Fetch user details protected
+- add expenses
+- Retrieve individual user expenses.
+- Retrieve overall expenses.
+- Download balance sheet.
+
 
 ## Installation
 
@@ -41,11 +45,46 @@ Branch Name : jwt-awth
 
 ## API Endpoints
 
-### Access user data Endpoint
+### add expenses
 
-- **URL**: `auth/user`
-- **Method**: `GET`
-- **Header**: Bearer 'your_token'
+- **URL**: `expenses/add`
+- **Method**: `POST`
+- **Header**: Authorisation: Bearer 'your_token'
+  #### Example Body
+  ```json
+    {
+  "amount": 100,
+  "splitMethod": "equal",
+  "participants": [
+    {
+      "userId": "user1"
+    },
+    {
+      "name": "John Doe",
+      "email": "john@example.com"
+    }
+  ]}
+  ```
     
+### Retrieve individual user expenses.
 
+- **URL**: `expenses/user`
+- **Method**: `GET`
+- **Header**: Authorisation: Bearer 'your_token'
+
+
+### Retrieve overall expenses.
+
+- **URL**: `expenses/overall`
+- **Method**: `GET`
+- **Header**: Authorisation: Bearer 'your_token'
+
+
+
+### Download balance sheet.
+
+- **URL**: `expenses/balance-sheet`
+- **Method**: `GET`
+- **Header**: Authorisation: Bearer 'your_token'
+    
 
