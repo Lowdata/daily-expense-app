@@ -112,3 +112,9 @@ The Daily Expense App is a backend service that handles user authentication and 
 - **URL**: expenses/balance-sheet
 - **Method**: GET
 - **Header**: Authorisation: Bearer 'your_token'
+#### Note: Use browsers to call this endpoint as Postman will not download the file.
+
+#### Steps to Download the file
+- Add MobHeader extension to the browser.
+- Add the Authorization Header.
+- http://localhost:5000/expenses/balance-sheet hit this link in the browser.
