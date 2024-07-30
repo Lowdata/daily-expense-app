@@ -18,9 +18,13 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.1.4",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/json2csv": "^5.0.7"
   }
 }

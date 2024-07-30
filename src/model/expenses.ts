@@ -17,4 +17,5 @@ export interface Expense {
     }[];
     createdAt: Date;
     updatedAt: Date;
+    creatorId: string;
 }
