@@ -12,7 +12,7 @@ Branch Name : expences-features
 
 
 
-## Features of Branch Name : user-features
+## Features of Branch Name : expences-features
 
 - add expenses
 - Retrieve individual user expenses.
